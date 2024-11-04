@@ -17,6 +17,6 @@ public class ChallengeliteraluraApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception{
-		principal.primerMetodo();
+		principal.muestraElMenu();
 	}
 }

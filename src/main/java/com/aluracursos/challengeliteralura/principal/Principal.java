@@ -3,8 +3,12 @@ package com.aluracursos.challengeliteralura.principal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 @Component
 public class Principal {
+private Scanner teclado = new Scanner(System.in);
 
     @Autowired
     private final MetodosPrincipal metodo;
@@ -12,8 +16,34 @@ public class Principal {
     public Principal(MetodosPrincipal metodo) {
         this.metodo = metodo;
     }
+    public void muestraElMenu(){
+        System.out.println("¡Bienvenido a tú catálogo de libros!");
+        String menu = "    |=!=!=| Menú principal: |=!=!| \n"+
+                "Elige una opción para navegar en tú catálogo: \n"+
+                "1) Ver libro\n"+
+                "2) Salir.";
+        int decision = 0;
+        while(decision != 2){
+            System.out.println(menu);
+            try {
+                decision = teclado.nextInt();
 
-    public void primerMetodo(){
-        metodo.getDatosLibro();
+                switch (decision) {
+                    case 1:
+                        metodo.buscarLibroWeb();
+                        break;
+                    case 2:
+                        System.out.println("Saliendo del programa...");
+                        break;
+                    default:
+                        System.out.println("Opción no válida, por favor intenta nuevamente.");
+                        break;
+                }
+            }catch (InputMismatchException e){
+                System.out.println("Entrada no válida. Por favor, ingresa un valor numérico.");
+                teclado.nextLine();
+            }
+        }
     }
+
 }

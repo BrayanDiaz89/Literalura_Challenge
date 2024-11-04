@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
 
 @Entity
 @Table(name = "libros")
@@ -18,6 +20,18 @@ public class Libro {
     private Double numeroDeDescargas;
     @OneToMany(mappedBy = "libro", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Autor> authors;
+
+    //JPA nos exige tener un constructor predeterminado con el mismo nombre del personalizado, ya él internamente
+    //reconoce el personalizado que tenemos después.
+    public Libro(){} //Constructor predeterminado.
+
+    //Constructor personalizado.
+    public Libro(DatosLibro datosLibro){
+        this.titulo = datosLibro.titulo();
+        this.lenguaje = String.valueOf(datosLibro.lenguaje());
+        this.poster = String.valueOf(datosLibro.poster());
+        this.numeroDeDescargas = datosLibro.numeroDeDescargas();
+    }
 
     public long getId() {
         return Id;
