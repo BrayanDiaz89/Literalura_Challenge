@@ -35,6 +35,11 @@ public class Autor {
             this.fechaDeLanzamiento = null;
         }
     }*/
+    public Autor(String nombre, DatosAutor a){
+        this.nombre = nombre;
+        this.fechaDeNacimiento = a.anioNacimiento();
+        this.fechaDeDeceso = a.anioDeceso();
+    }
 
     public Long getId() {
         return Id;

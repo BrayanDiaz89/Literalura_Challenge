@@ -18,8 +18,11 @@ public class Libro {
     private String lenguaje;
     private String poster;
     private Double numeroDeDescargas;
-    @OneToMany(mappedBy = "libro", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Autor> authors;
+    //orphanRemoval = true, asegurará que si eliminamos un autor de la tabla autores, si este autor no tiene relación con ningun otro libro
+    //se eliminará totalmente de la bd, para que no queden datos huerfanos.
+    @OneToMany(mappedBy = "libro", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Autor> autores = new ArrayList<>();
+
 
     //JPA nos exige tener un constructor predeterminado con el mismo nombre del personalizado, ya él internamente
     //reconoce el personalizado que tenemos después.
@@ -73,22 +76,23 @@ public class Libro {
         this.numeroDeDescargas = numeroDeDescargas;
     }
 
-    public List<Autor> getAuthors() {
-        return authors;
+    public List<Autor> getAutores() {
+        return autores;
     }
 
-    public void setAuthors(List<Autor> authors) {
-        this.authors = authors;
+    public void setAutores(List<Autor> autores) {
+        this.autores = autores;
     }
 
     @Override
     public String toString() {
-        return "Libro{" +
-                ", titulo='" + titulo + '\'' +
-                ", lenguaje='" + lenguaje + '\'' +
-                ", poster='" + poster + '\'' +
-                ", numeroDeDescargas=" + numeroDeDescargas +
-                ", authors=" + authors +
-                '}';
+        return  "|*°*°*°*°*°*°*°*°*°**°*°*°*°*°*°*°*°*°*°*°*°*°*°*°*°*°*°*°*°*°*°*°*|"+ '\'' +
+                "| LIBRO |" + '\'' +
+                " Título: " + titulo + '\'' +
+                " Lenguaje: " + lenguaje + '\'' +
+                " Poster: " + poster + '\'' +
+                " Número de descargas:" + numeroDeDescargas + '\'' +
+                " Autor: " + autores + '\'' +
+                "|*°*°*°*°*°*°*°*°*°**°*°*°*°*°*°*°*°*°*°*°*°*°*°*°*°*°*°*°*°*°*°*°*|";
     }
 }

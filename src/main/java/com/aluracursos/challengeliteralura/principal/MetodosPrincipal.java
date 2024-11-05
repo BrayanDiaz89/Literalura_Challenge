@@ -54,7 +54,7 @@ public class MetodosPrincipal {
             DatosLibro datos = getDatosLibro();
             Libro libro = new Libro(datos);
             repository.save(libro);
-            System.out.println(datos);
+            datos.toString();
     }
 
 }
