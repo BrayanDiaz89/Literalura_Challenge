@@ -4,8 +4,7 @@ import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.OptionalDouble;
-import java.util.OptionalInt;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "libros")
@@ -23,6 +22,11 @@ public class Libro {
     @OneToMany(mappedBy = "libro", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Autor> autores = new ArrayList<>();
 
+    //Metodo que permite agregar un autor a la base de datos, al mismo tiempo que se agrega su libro.
+    public void agregarAutor(Autor autor){
+        autor.setLibro(this);
+        this.autores.add(autor);
+    }
 
     //JPA nos exige tener un constructor predeterminado con el mismo nombre del personalizado, ya él internamente
     //reconoce el personalizado que tenemos después.
@@ -36,11 +40,11 @@ public class Libro {
         this.numeroDeDescargas = datosLibro.numeroDeDescargas();
     }
 
-    public long getId() {
+    public Long getId() {
         return Id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         Id = id;
     }
 
@@ -86,13 +90,17 @@ public class Libro {
 
     @Override
     public String toString() {
-        return  "|*°*°*°*°*°*°*°*°*°**°*°*°*°*°*°*°*°*°*°*°*°*°*°*°*°*°*°*°*°*°*°*°*|"+ '\'' +
-                "| LIBRO |" + '\'' +
-                " Título: " + titulo + '\'' +
-                " Lenguaje: " + lenguaje + '\'' +
-                " Poster: " + poster + '\'' +
-                " Número de descargas:" + numeroDeDescargas + '\'' +
-                " Autor: " + autores + '\'' +
-                "|*°*°*°*°*°*°*°*°*°**°*°*°*°*°*°*°*°*°*°*°*°*°*°*°*°*°*°*°*°*°*°*°*|";
+        String nombresAutores = autores.stream()
+                .map(Autor::getNombre)
+                .collect(Collectors.joining(", "));
+
+        return  "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n" +
+                "|                                     | LIBRO BUSCADO: |\n" +
+                "| Título: " + titulo + "\n" +
+                "| Lenguaje: " + lenguaje + "\n" +
+                "| Poster: " + poster + "\n" +
+                "| Número de descargas: " + numeroDeDescargas + "\n" +
+                "| Autor(es): " + nombresAutores + "\n" +
+                "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n";
     }
 }

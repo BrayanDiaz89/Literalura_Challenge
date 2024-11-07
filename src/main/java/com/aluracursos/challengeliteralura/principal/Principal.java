@@ -34,6 +34,8 @@ private Scanner teclado = new Scanner(System.in);
                         break;
                     case 2:
                         System.out.println("Saliendo del programa...");
+                        teclado.close();
+                        System.exit(0);
                         break;
                     default:
                         System.out.println("Opción no válida, por favor intenta nuevamente.");

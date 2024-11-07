@@ -1,9 +1,6 @@
 package com.aluracursos.challengeliteralura.principal;
 
-import com.aluracursos.challengeliteralura.models.DatosAutor;
-import com.aluracursos.challengeliteralura.models.DatosLibro;
-import com.aluracursos.challengeliteralura.models.Libro;
-import com.aluracursos.challengeliteralura.models.ResultadoAPI;
+import com.aluracursos.challengeliteralura.models.*;
 import com.aluracursos.challengeliteralura.repository.LibroRepository;
 import com.aluracursos.challengeliteralura.service.ConsumoAPI;
 import com.aluracursos.challengeliteralura.service.ConvierteDatos;
@@ -32,19 +29,19 @@ public class MetodosPrincipal {
 
     //Metodo para testear la busqueda en mi api por id y visualizar mis datos deserializados.
     public DatosLibro getDatosLibro() {
-        System.out.println("Escribe el id del libro que deseas buscar: ");
+        System.out.println("Escribe el nombre del libro que deseas buscar: ");
         nameLibro = teclado.nextLine();
         var json = consumoAPI.obtenerDatos(URL_BASE + "?search=" + nameLibro.replace(" ", "+"));
-        System.out.println("JSON recibido: " + json);
+        //System.out.println("JSON recibido: " + json);
 
         // Cambia el tipo de deserialización a ResultadoAPI
         ResultadoAPI resultado = conversor.obtenerDatos(json, ResultadoAPI.class);
         if (resultado.libros() != null && !resultado.libros().isEmpty()) {
             DatosLibro datos = resultado.libros().get(0); // Toma el primer libro
-            System.out.println("Datos deserializados: " + datos);
+            //System.out.println("Datos deserializados: " + datos);
             return datos;
         } else {
-            System.out.println("No se encontraron datos de libros en el JSON.");
+            //System.out.println("No se encontraron datos de libros en el JSON.");
             return null;
         }
     }
@@ -52,9 +49,30 @@ public class MetodosPrincipal {
     //Metodo para consultar en la base de datos y agregar libro de la api, si no existe.
     public void buscarLibroWeb() {
             DatosLibro datos = getDatosLibro();
-            Libro libro = new Libro(datos);
-            repository.save(libro);
-            datos.toString();
-    }
+            if (datos == null) {
+                System.out.println("El libro buscado no fue encontrado.");
+                return;
+            }
+            Optional<Libro> libroExistente = repository.findByTitulo(datos.titulo());
+            if (libroExistente.isPresent()) {
+                System.out.println("Libro en nuestra base de datos.");
+                System.out.println(libroExistente.get().toString());
+            } else {
 
+                Libro libro = new Libro(datos);
+                for (DatosAutor datosAutor : datos.autores()) {
+                    Autor autor = new Autor();
+                    autor.setNombre(datosAutor.nombre());
+                    autor.setFechaDeNacimiento(datosAutor.anioNacimiento());
+                    autor.setFechaDeDeceso(datosAutor.anioDeceso());
+
+                    libro.agregarAutor(autor);
+                }
+
+                repository.save(libro);
+                System.out.println("Libro guardado con éxito.");
+                Optional<Libro> libroGuardado = repository.findByIdWithAutores(libro.getId());
+                libroGuardado.ifPresent(System.out::println);
+            }
+    }
 }

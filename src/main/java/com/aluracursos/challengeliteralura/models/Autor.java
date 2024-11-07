@@ -15,6 +15,7 @@ public class Autor {
     private Integer fechaDeNacimiento;
     private Integer fechaDeDeceso;
     @ManyToOne
+    //@JoinColumn(name = "libro_id")
     private Libro libro;
 
     public Autor(){}
