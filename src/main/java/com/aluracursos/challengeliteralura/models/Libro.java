@@ -108,7 +108,7 @@ public class Libro {
                 "|                                     | LIBRO BUSCADO: |\n" +
                 "| Título: " + titulo + "\n" +
                 "| Lenguaje: " + lenguaje + "\n" +
-                "| Portada: " + poster + "\n" +
+                "| Poster: " + poster + "\n" +
                 "| Número de descargas: " + numeroDeDescargas + "\n" +
                 "| Autor(es): " + nombresAutores + "\n" +
                 "| Libro electrónico (.zip): " + libroElectronico + "\n" +

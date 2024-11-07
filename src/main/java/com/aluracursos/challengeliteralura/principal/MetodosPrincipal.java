@@ -6,11 +6,10 @@ import com.aluracursos.challengeliteralura.service.ConsumoAPI;
 import com.aluracursos.challengeliteralura.service.ConvierteDatos;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
-import java.util.stream.Collectors;
+
 
 @Component
 public class MetodosPrincipal {
@@ -56,7 +55,7 @@ public class MetodosPrincipal {
             Optional<Libro> libroExistente = repository.findByTitulo(datos.titulo());
             if (libroExistente.isPresent()) {
                 System.out.println("Libro en nuestra base de datos.");
-                System.out.println(libroExistente.get().toString());
+                System.out.println(libroExistente.get());
             } else {
 
                 Libro libro = new Libro(datos);
