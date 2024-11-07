@@ -16,6 +16,7 @@ public class Libro {
     private String titulo;
     private String lenguaje;
     private String poster;
+    private String libroElectronico;
     private Double numeroDeDescargas;
     //orphanRemoval = true, asegurará que si eliminamos un autor de la tabla autores, si este autor no tiene relación con ningun otro libro
     //se eliminará totalmente de la bd, para que no queden datos huerfanos.
@@ -32,11 +33,13 @@ public class Libro {
     //reconoce el personalizado que tenemos después.
     public Libro(){} //Constructor predeterminado.
 
+
     //Constructor personalizado.
     public Libro(DatosLibro datosLibro){
         this.titulo = datosLibro.titulo();
         this.lenguaje = String.valueOf(datosLibro.lenguaje());
-        this.poster = String.valueOf(datosLibro.poster());
+        this.poster = String.valueOf(datosLibro.formats().poster());
+        this.libroElectronico = String.valueOf(datosLibro.formats().libroElectronico());
         this.numeroDeDescargas = datosLibro.numeroDeDescargas();
     }
 
@@ -67,9 +70,16 @@ public class Libro {
     public String getPoster() {
         return poster;
     }
-
     public void setPoster(String poster) {
         this.poster = poster;
+    }
+
+    public String getLibroElectronico() {
+        return libroElectronico;
+    }
+
+    public void setLibroElectronico(String libroElectronico) {
+        this.libroElectronico = libroElectronico;
     }
 
     public Double getNumeroDeDescargas() {
@@ -98,9 +108,10 @@ public class Libro {
                 "|                                     | LIBRO BUSCADO: |\n" +
                 "| Título: " + titulo + "\n" +
                 "| Lenguaje: " + lenguaje + "\n" +
-                "| Poster: " + poster + "\n" +
+                "| Portada: " + poster + "\n" +
                 "| Número de descargas: " + numeroDeDescargas + "\n" +
                 "| Autor(es): " + nombresAutores + "\n" +
+                "| Libro electrónico (.zip): " + libroElectronico + "\n" +
                 "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n";
     }
 }
