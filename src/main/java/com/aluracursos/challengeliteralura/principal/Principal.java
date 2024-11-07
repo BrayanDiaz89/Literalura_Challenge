@@ -17,11 +17,12 @@ private Scanner teclado = new Scanner(System.in);
         this.metodo = metodo;
     }
     public void muestraElMenu(){
-        System.out.println("¡Bienvenido a tú catálogo de libros!");
-        String menu = "    |=!=!=| Menú principal: |=!=!| \n"+
-                "Elige una opción para navegar en tú catálogo: \n"+
-                "1) Ver libro\n"+
-                "2) Salir.";
+        System.out.println("\n|--   ¡Bienvenido a tú catálogo de libros!   --|");
+        String menu =
+                "\n------|=!=!=| - Menú principal: - |=!=!|------\n"+
+                "| Elige una opción para navegar en tú catálogo: \n"+
+                "| 1) Ver libro\n"+
+                "| 2) Salir.";
         int decision = 0;
         while(decision != 2){
             System.out.println(menu);
