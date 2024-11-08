@@ -4,6 +4,7 @@ import com.aluracursos.challengeliteralura.models.*;
 import com.aluracursos.challengeliteralura.repository.LibroRepository;
 import com.aluracursos.challengeliteralura.service.ConsumoAPI;
 import com.aluracursos.challengeliteralura.service.ConvierteDatos;
+import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -74,4 +75,19 @@ public class MetodosPrincipal {
                 libroGuardado.ifPresent(System.out::println);
             }
     }
+    public void getLibros(){
+        libros = repository.findAllWithAutores();
+        if  (libros.isEmpty()) {
+            System.out.println("No hay libros en tú base de datos.");
+        }
+        libros.forEach(System.out::println);
+    }
+    public void getAutores(){
+        List<Autor> autores = repository.findAllWithLibros();
+        if (autores.isEmpty()){
+            System.out.println("No hay autores en tú base de datos.");
+        }
+        autores.forEach(System.out::println);
+    }
+
 }

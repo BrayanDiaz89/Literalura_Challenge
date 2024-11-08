@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "autores")
@@ -20,22 +23,6 @@ public class Autor {
 
     public Autor(){}
 
-    /*
-    public Autor(Integer numero, DatosEpisodio d) {
-        this.temporada = numero;
-        this.titulo = d.titulo();
-        this.numeroEpisodio = d.numeroEpisodio();
-        try{
-            this.evaluacion = Double.valueOf(d.evaluacion());
-        }catch (NumberFormatException e){
-            this.evaluacion = 0.0;
-        }
-        try{
-            this.fechaDeLanzamiento = LocalDate.parse(d.fechaDeLanzamiento());
-        }catch (DateTimeParseException e){
-            this.fechaDeLanzamiento = null;
-        }
-    }*/
     public Autor(String nombre, DatosAutor a){
         this.nombre = nombre;
         this.fechaDeNacimiento = a.anioNacimiento();
@@ -80,5 +67,21 @@ public class Autor {
 
     public void setLibro(Libro libro) {
         this.libro = libro;
+    }
+
+    @Override
+    public String toString() {
+        List<Libro> libros = new ArrayList<>();
+        String librosDelAutor = libros.stream()
+                .map(Libro::getTitulo)
+                .collect(Collectors.joining(", "));
+
+        return  "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n" +
+                "|                                      | AUTOR: |\n" +
+                "| Nombre: " + nombre + "\n" +
+                "| Año de Nacimiento: " + fechaDeNacimiento + "\n" +
+                "| Año de Deceso: " + fechaDeDeceso + "\n" +
+                "| Libros: " + "| "+ librosDelAutor + " |"+"\n" +
+                "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n";
     }
 }

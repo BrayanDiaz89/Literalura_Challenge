@@ -20,7 +20,7 @@ public class Libro {
     private Double numeroDeDescargas;
     //orphanRemoval = true, asegurará que si eliminamos un autor de la tabla autores, si este autor no tiene relación con ningun otro libro
     //se eliminará totalmente de la bd, para que no queden datos huerfanos.
-    @OneToMany(mappedBy = "libro", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "libro", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<Autor> autores = new ArrayList<>();
 
     //Metodo que permite agregar un autor a la base de datos, al mismo tiempo que se agrega su libro.
@@ -105,7 +105,7 @@ public class Libro {
                 .collect(Collectors.joining(", "));
 
         return  "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n" +
-                "|                                     | LIBRO BUSCADO: |\n" +
+                "|                                      | LIBRO: |\n" +
                 "| Título: " + titulo + "\n" +
                 "| Lenguaje: " + lenguaje + "\n" +
                 "| Poster: " + poster + "\n" +

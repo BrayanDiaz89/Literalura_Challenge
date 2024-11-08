@@ -22,9 +22,11 @@ private Scanner teclado = new Scanner(System.in);
                 "\n------|=!=!=| - Menú principal: - |=!=!|------\n"+
                 "| Elige una opción para navegar en tú catálogo: \n"+
                 "| 1) Ver libro\n"+
-                "| 2) Salir.";
+                "| 2) Ver libros de tú base de datos.\n"+
+                "| 3) Ver autores de tú base de datos.\n"+
+                "| 4) Salir.";
         int decision = 0;
-        while(decision != 2){
+        while(decision != 4){
             System.out.println(menu);
             try {
                 decision = teclado.nextInt();
@@ -34,6 +36,12 @@ private Scanner teclado = new Scanner(System.in);
                         metodo.buscarLibroWeb();
                         break;
                     case 2:
+                        metodo.getLibros();
+                        break;
+                    case 3:
+                        metodo.getAutores();
+                        break;
+                    case 4:
                         System.out.println("Saliendo del programa...");
                         teclado.close();
                         System.exit(0);
