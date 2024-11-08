@@ -5,7 +5,9 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Entity
@@ -71,17 +73,13 @@ public class Autor {
 
     @Override
     public String toString() {
-        List<Libro> libros = new ArrayList<>();
-        String librosDelAutor = libros.stream()
-                .map(Libro::getTitulo)
-                .collect(Collectors.joining(", "));
 
         return  "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n" +
                 "|                                      | AUTOR: |\n" +
                 "| Nombre: " + nombre + "\n" +
                 "| Año de Nacimiento: " + fechaDeNacimiento + "\n" +
                 "| Año de Deceso: " + fechaDeDeceso + "\n" +
-                "| Libros: " + "| "+ librosDelAutor + " |"+"\n" +
+                "| Libros: " + "| "+ libro.getTitulo() + " |"+"\n" +
                 "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n";
     }
 }
