@@ -2,12 +2,8 @@ package com.aluracursos.challengeliteralura.models;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Entity
@@ -19,9 +15,20 @@ public class Autor {
     private String nombre;
     private Integer fechaDeNacimiento;
     private Integer fechaDeDeceso;
-    @ManyToOne
-    //@JoinColumn(name = "libro_id")
-    private Libro libro;
+    @ManyToMany
+    @JoinTable(
+            name = "autor_libro",
+            joinColumns = @JoinColumn(name = "autor_id"),
+            inverseJoinColumns = @JoinColumn(name = "libro_id")
+    )
+    private List<Libro> libros = new ArrayList<>();
+
+    public void agregarLibro(Libro libro){
+        if (!this.libros.contains(libro)) {
+            this.libros.add(libro);
+            libro.getAutores().add(this);
+        }
+    }
 
     public Autor(){}
 
@@ -63,12 +70,12 @@ public class Autor {
         this.fechaDeDeceso = fechaDeDeceso;
     }
 
-    public Libro getLibro() {
-        return libro;
+    public List<Libro> getLibros() {
+        return libros;
     }
 
-    public void setLibro(Libro libro) {
-        this.libro = libro;
+    public void setLibros(List<Libro> libros) {
+        this.libros = libros;
     }
 
     @Override
@@ -79,7 +86,6 @@ public class Autor {
                 "| Nombre: " + nombre + "\n" +
                 "| Año de Nacimiento: " + fechaDeNacimiento + "\n" +
                 "| Año de Deceso: " + fechaDeDeceso + "\n" +
-                "| Libros: " + "| "+ libro.getTitulo() + " |"+"\n" +
                 "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n";
     }
 }

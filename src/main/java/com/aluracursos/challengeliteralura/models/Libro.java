@@ -20,13 +20,15 @@ public class Libro {
     private Double numeroDeDescargas;
     //orphanRemoval = true, asegurará que si eliminamos un autor de la tabla autores, si este autor no tiene relación con ningun otro libro
     //se eliminará totalmente de la bd, para que no queden datos huerfanos.
-    @OneToMany(mappedBy = "libro", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @ManyToMany(mappedBy = "libros", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Autor> autores = new ArrayList<>();
 
     //Metodo que permite agregar un autor a la base de datos, al mismo tiempo que se agrega su libro.
     public void agregarAutor(Autor autor){
-        autor.setLibro(this);
-        this.autores.add(autor);
+        if (!this.autores.contains(autor)) {
+            this.autores.add(autor);
+            autor.getLibros().add(this);
+        }
     }
 
     //JPA nos exige tener un constructor predeterminado con el mismo nombre del personalizado, ya él internamente

@@ -24,7 +24,7 @@ public interface LibroRepository extends JpaRepository<Libro, Long> {
     List<Libro> findAllWithAutores();
 
     //Ver autores
-    @Query("SELECT a FROM Autor a JOIN FETCH a.libro")
+    @Query("SELECT a FROM Autor a JOIN FETCH a.libros")
     List<Autor> findAllWithLibros();
 
 }

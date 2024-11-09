@@ -7,9 +7,8 @@ import com.aluracursos.challengeliteralura.service.ConvierteDatos;
 import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 @Component
@@ -43,6 +42,40 @@ public class MetodosPrincipal {
         } else {
             //System.out.println("No se encontraron datos de libros en el JSON.");
             return null;
+        }
+    }
+
+    public void verAutoresYSusLibros(List<Autor> autores) {
+        Map<String, List<String>> autorLibrosMap = new LinkedHashMap<>();
+
+        // Iterar sobre la lista de autores para agrupar los libros por autor
+        for (Autor autor : autores) {
+            // Crear una clave única para cada autor usando nombre, fecha de nacimiento y deceso
+            String datosAutor = "| Nombre: " + autor.getNombre() + "\n" +
+                    "| Año de Nacimiento: " + autor.getFechaDeNacimiento() + "\n" +
+                    "| Año de Deceso: " + autor.getFechaDeDeceso();
+
+            // Inicializar la lista de libros si es la primera vez que encontramos al autor
+            autorLibrosMap.putIfAbsent(datosAutor, new ArrayList<>());
+
+            // Agregar cada título de libro único para el autor
+            for (Libro libro : autor.getLibros()) {
+                if (!autorLibrosMap.get(datosAutor).contains(libro.getTitulo())) {
+                    autorLibrosMap.get(datosAutor).add(libro.getTitulo());
+                }
+            }
+        }
+
+        // Imprimir la información de los autores y sus libros una vez completado el mapa
+        for (Map.Entry<String, List<String>> entry : autorLibrosMap.entrySet()) {
+            String datosAutor = entry.getKey();
+            List<String> libros = entry.getValue();
+
+            System.out.println("\n|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+            System.out.println("|                                      | AUTOR: |");
+            System.out.println(datosAutor);
+            System.out.println("| Libros: -- " + String.join(" -- ", libros) + " --");
+            System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
         }
     }
 
@@ -82,12 +115,12 @@ public class MetodosPrincipal {
         }
         libros.forEach(System.out::println);
     }
+
     public void getAutores(){
         List<Autor> autores = repository.findAllWithLibros();
-        if (autores.isEmpty()){
+        if(autores.isEmpty()){
             System.out.println("No hay autores en tú base de datos.");
         }
-        autores.forEach(System.out::println);
+        verAutoresYSusLibros(autores);
     }
-
 }
