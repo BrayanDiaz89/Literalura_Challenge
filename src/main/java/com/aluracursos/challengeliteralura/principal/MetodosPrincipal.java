@@ -4,11 +4,9 @@ import com.aluracursos.challengeliteralura.models.*;
 import com.aluracursos.challengeliteralura.repository.LibroRepository;
 import com.aluracursos.challengeliteralura.service.ConsumoAPI;
 import com.aluracursos.challengeliteralura.service.ConvierteDatos;
-import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 
 @Component
@@ -46,36 +44,40 @@ public class MetodosPrincipal {
     }
 
     public void verAutoresYSusLibros(List<Autor> autores) {
+        // Crear un mapa para almacenar los datos del autor como clave y su lista de libros como valor.
         Map<String, List<String>> autorLibrosMap = new LinkedHashMap<>();
 
-        // Iterar sobre la lista de autores para agrupar los libros por autor
+        // Paso 1: Recorrer la lista de autores y agrupar los libros por cada autor
         for (Autor autor : autores) {
-            // Crear una clave única para cada autor usando nombre, fecha de nacimiento y deceso
+            // Crear una clave única para cada autor usando su nombre, fecha de nacimiento y fecha de deceso
+            // Esto nos permite identificar a cada autor de manera única y evita duplicados
             String datosAutor = "| Nombre: " + autor.getNombre() + "\n" +
                     "| Año de Nacimiento: " + autor.getFechaDeNacimiento() + "\n" +
                     "| Año de Deceso: " + autor.getFechaDeDeceso();
 
-            // Inicializar la lista de libros si es la primera vez que encontramos al autor
+            // Si el autor aún no está en el mapa, se agrega con una lista vacía para sus libros
             autorLibrosMap.putIfAbsent(datosAutor, new ArrayList<>());
 
-            // Agregar cada título de libro único para el autor
+            // Recorrer la lista de libros del autor y agregarlos a la lista del mapa
             for (Libro libro : autor.getLibros()) {
+                // Añadir el título del libro a la lista del autor en el mapa, solo si aún no está
                 if (!autorLibrosMap.get(datosAutor).contains(libro.getTitulo())) {
                     autorLibrosMap.get(datosAutor).add(libro.getTitulo());
                 }
             }
         }
 
-        // Imprimir la información de los autores y sus libros una vez completado el mapa
+        // Paso 2: Imprimir cada autor y su lista de libros a partir del mapa
         for (Map.Entry<String, List<String>> entry : autorLibrosMap.entrySet()) {
-            String datosAutor = entry.getKey();
-            List<String> libros = entry.getValue();
+            String datosAutor = entry.getKey(); // Obtener la clave (información del autor)
+            List<String> libros = entry.getValue(); // Obtener el valor (lista de libros)
 
-            System.out.println("\n|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+            // Imprimir la información del autor en el formato especificado
+            System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
             System.out.println("|                                      | AUTOR: |");
             System.out.println(datosAutor);
             System.out.println("| Libros: -- " + String.join(" -- ", libros) + " --");
-            System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+            System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
         }
     }
 
