@@ -125,4 +125,22 @@ public class MetodosPrincipal {
         }
         verAutoresYSusLibros(autores);
     }
+
+    public void verAutoresVivosDesdeFechaRecibida() {
+        try {
+            System.out.println("Digite apartir de que fecha de nacimiento deseas ver los autores: ");
+            Integer fechaInicio = teclado.nextInt();
+            System.out.println("Digite hasta que fecha de deceso deseas ver los autores: ");
+            Integer fechaFin = teclado.nextInt();
+            List<Autor> autores = repository.findAllByFechaDeVida(fechaInicio, fechaFin);
+
+            if(autores.isEmpty()){
+                System.out.println("No hay registros de autores según las fechas de nacimiento recibidas.");
+            }
+            verAutoresYSusLibros(autores);
+        }catch (InputMismatchException e){
+            System.out.println("Entrada no válida. Por favor, ingresa un valor numérico.");
+            teclado.nextLine();
+        }
+    }
 }
