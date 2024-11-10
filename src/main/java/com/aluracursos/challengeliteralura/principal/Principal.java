@@ -25,7 +25,8 @@ private Scanner teclado = new Scanner(System.in);
                 "| 2) Ver libros de tú base de datos.\n"+
                 "| 3) Ver autores de tú base de datos.\n"+
                 "| 4) Ver autores según fecha de nacimiento (Fecha desde, fecha hasta).\n"+
-                "| 5) Salir.";
+                "| 5) Buscar libros por idiomas.\n"+
+                "| 6) Salir.";
         int decision = 0;
         while(decision != 5){
             System.out.println(menu);
@@ -46,6 +47,9 @@ private Scanner teclado = new Scanner(System.in);
                         metodo.verAutoresVivosDesdeFechaRecibida();
                         break;
                     case 5:
+                        metodo.buscarLibrosPorIdioma();
+                        break;
+                    case 6:
                         System.out.println("Saliendo del programa...");
                         teclado.close();
                         System.exit(0);

@@ -143,4 +143,15 @@ public class MetodosPrincipal {
             teclado.nextLine();
         }
     }
+
+    public void buscarLibrosPorIdioma() {
+        Libro libro = new Libro();
+        List<String> lenguajes = new ArrayList<>();
+        System.out.println("Estos son los idiomas presentes en tú base de datos: ");
+        lenguajes.forEach(System.out::println);
+        System.out.println("Digita el lenguaje de los libros que deseas consultar: ");
+        String lenguajeUsuario = teclado.nextLine();
+        System.out.println(lenguajes);
+
+    }
 }

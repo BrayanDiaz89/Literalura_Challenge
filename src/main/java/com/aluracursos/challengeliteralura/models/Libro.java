@@ -14,7 +14,7 @@ public class Libro {
     private Long Id;
     @Column(unique = true)//Columna unica porque no quiero libros repetidos (con el mismo nombre)
     private String titulo;
-    private String lenguaje;
+    private List<String> lenguaje;
     private String poster;
     private String libroElectronico;
     private Double numeroDeDescargas;
@@ -39,7 +39,8 @@ public class Libro {
     //Constructor personalizado.
     public Libro(DatosLibro datosLibro){
         this.titulo = datosLibro.titulo();
-        this.lenguaje = String.valueOf(datosLibro.lenguaje());
+        //this.lenguaje = String.valueOf(datosLibro.lenguaje());
+        this.lenguaje = datosLibro.lenguaje();
         this.poster = String.valueOf(datosLibro.formats().poster());
         this.libroElectronico = String.valueOf(datosLibro.formats().libroElectronico());
         this.numeroDeDescargas = datosLibro.numeroDeDescargas();
@@ -61,11 +62,11 @@ public class Libro {
         this.titulo = titulo;
     }
 
-    public String getLenguaje() {
+    public List<String> getLenguaje() {
         return lenguaje;
     }
 
-    public void setLenguaje(String lenguaje) {
+    public void setLenguaje(List<String> lenguaje) {
         this.lenguaje = lenguaje;
     }
 
