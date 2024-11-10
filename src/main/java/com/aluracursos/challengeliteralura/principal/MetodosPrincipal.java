@@ -18,6 +18,7 @@ public class MetodosPrincipal {
     private ConvierteDatos conversor = new ConvierteDatos();
     private Optional<Libro> libroBuscado;
     private List<Libro> libros = new ArrayList<>();
+    private Set<String> lenguajes;
     private final LibroRepository repository;
 
     public MetodosPrincipal(LibroRepository repository) {
@@ -109,6 +110,10 @@ public class MetodosPrincipal {
                 Optional<Libro> libroGuardado = repository.findByIdWithAutores(libro.getId());
                 libroGuardado.ifPresent(System.out::println);
             }
+            for (Libro libro : libros) {
+                String primerLenguaje = libro.getLenguaje().isEmpty() ? "" : libro.getLenguaje();
+                lenguajes.add(primerLenguaje);
+            }
     }
     public void getLibros(){
         libros = repository.findAllWithAutores();
@@ -147,6 +152,16 @@ public class MetodosPrincipal {
     public void buscarLibrosPorIdioma() {
 
         System.out.println("Estos son los idiomas presentes en tú base de datos: ");
+        List<String> listaDeLenguajes = repository.findDistinctListadoDeLenguajes();
+        listaDeLenguajes.forEach(System.out::println);
+        /*if(lenguajes.isEmpty()){
+            System.out.println("No hay registros en la base de datos.");
+        }
+        int i = 1;
+        for (String lenguaje : lenguajes){
+            System.out.println("|"+ i +") " + lenguaje);
+            i++;
+        }*/
 
         System.out.println("Digita el lenguaje de los libros que deseas consultar: ");
         String lenguajeUsuario = teclado.nextLine();
