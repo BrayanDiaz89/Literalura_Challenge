@@ -28,7 +28,7 @@ private Scanner teclado = new Scanner(System.in);
                 "| 5) Buscar libros por idiomas.\n"+
                 "| 6) Salir.";
         int decision = 0;
-        while(decision != 5){
+        while(decision != 6){
             System.out.println(menu);
             try {
                 decision = teclado.nextInt();

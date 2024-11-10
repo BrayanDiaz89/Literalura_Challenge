@@ -17,7 +17,7 @@ public class MetodosPrincipal {
     private final String URL_BASE = "https://gutendex.com/books/";
     private ConvierteDatos conversor = new ConvierteDatos();
     private Optional<Libro> libroBuscado;
-    private List<Libro> libros;
+    private List<Libro> libros = new ArrayList<>();
     private final LibroRepository repository;
 
     public MetodosPrincipal(LibroRepository repository) {
@@ -145,13 +145,14 @@ public class MetodosPrincipal {
     }
 
     public void buscarLibrosPorIdioma() {
-        Libro libro = new Libro();
-        List<String> lenguajes = new ArrayList<>();
+
         System.out.println("Estos son los idiomas presentes en tú base de datos: ");
-        lenguajes.forEach(System.out::println);
+
         System.out.println("Digita el lenguaje de los libros que deseas consultar: ");
         String lenguajeUsuario = teclado.nextLine();
-        System.out.println(lenguajes);
+        String lenguajeConvertido = "["+lenguajeUsuario+"]";
 
+        List<Libro> librosConlenguajeConsultado = repository.findAllByLenguajeIngresado(lenguajeConvertido);
+        librosConlenguajeConsultado.forEach(System.out::println);
     }
 }

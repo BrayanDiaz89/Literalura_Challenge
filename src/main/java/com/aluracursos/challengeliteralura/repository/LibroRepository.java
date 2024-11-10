@@ -33,4 +33,7 @@ public interface LibroRepository extends JpaRepository<Libro, Long> {
 
     @Query("SELECT a FROM Autor a JOIN FETCH a.libros WHERE a.fechaDeNacimiento BETWEEN :fechaInicio AND :fechaFin")
     List<Autor> findAllByFechaDeVida(@Param("fechaInicio") Integer fechaInicio, @Param("fechaFin") Integer fechaFin);
+
+    @Query("SELECT l FROM Libro l JOIN FETCH l.autores WHERE l.lenguaje = :lenguaje")
+    List<Libro> findAllByLenguajeIngresado(@Param("lenguaje") String lenguaje);
 }

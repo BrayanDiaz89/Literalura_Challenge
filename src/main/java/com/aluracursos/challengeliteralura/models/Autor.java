@@ -24,13 +24,6 @@ public class Autor {
     )
     private List<Libro> libros = new ArrayList<>();
 
-    public void agregarLibro(Libro libro){
-        if (!this.libros.contains(libro)) {
-            this.libros.add(libro);
-            libro.getAutores().add(this);
-        }
-    }
-
     public Autor(){}
 
     public Autor(String nombre, DatosAutor a){
