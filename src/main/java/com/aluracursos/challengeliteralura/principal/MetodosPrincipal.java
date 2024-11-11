@@ -151,9 +151,12 @@ public class MetodosPrincipal {
 
     public void buscarLibrosPorIdioma() {
 
-        System.out.println("Estos son los idiomas presentes en tú base de datos: ");
         List<String> listaDeLenguajes = repository.findDistinctListadoDeLenguajes();
-        listaDeLenguajes.forEach(System.out::println);
+        System.out.println("Lenguajes disponibles en tus libros: ");
+        for(String lenguaje : listaDeLenguajes){
+            int i = 1 ;
+            System.out.println("| "+ i + ") "  + lenguaje.replaceAll("[\\[\\]]", " "));
+        }
         /*if(lenguajes.isEmpty()){
             System.out.println("No hay registros en la base de datos.");
         }
