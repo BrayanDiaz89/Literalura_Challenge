@@ -28,15 +28,15 @@ public interface LibroRepository extends JpaRepository<Libro, Long> {
     @Query("SELECT a FROM Autor a JOIN FETCH a.libros")
     List<Autor> findAllWithLibros();
 
-    /*@Query("SELECT a FROM Autor a WHERE a.fechaDeNacimiento AND a.fechaDeDeceso BETWEEN :fechaDeNacimiento AND :fechaDeDeceso")
-    List<Autor> findAllByFechaDeVida(@Param("fechaDeNacimiento") Integer fechaDeNacimiento, @Param("fechaDeDeceso") Integer fechaDeDeceso);*/
-
+    //Obtengo la lista de autores con fecha de nacimiento entre Fecha inicio y fecha fin digitados por el usuario
     @Query("SELECT a FROM Autor a JOIN FETCH a.libros WHERE a.fechaDeNacimiento BETWEEN :fechaInicio AND :fechaFin")
     List<Autor> findAllByFechaDeVida(@Param("fechaInicio") Integer fechaInicio, @Param("fechaFin") Integer fechaFin);
 
+    //Obtengo la lista de libros según el lenguaje recibido por el usuario.
     @Query("SELECT l FROM Libro l JOIN FETCH l.autores WHERE l.lenguaje = :lenguaje")
     List<Libro> findAllByLenguajeIngresado(@Param("lenguaje") String lenguaje);
 
+    //Obtengo la lista de mi columna lenguaje de mi tabla Libro, sin tener valores repetidos DISTINCT
     @Query("SELECT DISTINCT l.lenguaje FROM Libro l")
     List<String> findDistinctListadoDeLenguajes();
 

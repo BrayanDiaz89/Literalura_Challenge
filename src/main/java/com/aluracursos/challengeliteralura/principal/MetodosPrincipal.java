@@ -157,15 +157,6 @@ public class MetodosPrincipal {
             int i = 1 ;
             System.out.println("| "+ i + ") "  + lenguaje.replaceAll("[\\[\\]]", " "));
         }
-        /*if(lenguajes.isEmpty()){
-            System.out.println("No hay registros en la base de datos.");
-        }
-        int i = 1;
-        for (String lenguaje : lenguajes){
-            System.out.println("|"+ i +") " + lenguaje);
-            i++;
-        }*/
-
         System.out.println("Digita el lenguaje de los libros que deseas consultar: ");
         String lenguajeUsuario = teclado.nextLine();
         String lenguajeConvertido = "["+lenguajeUsuario+"]";
