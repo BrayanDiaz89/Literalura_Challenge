@@ -201,6 +201,16 @@ public class MetodosPrincipal {
         }
     }
 
+    public void verTop3LibrosMasDescargadosDeAutor(List<Libro> librosDelAutor) {
+        List<Libro> librosTop3DescargasAutor = repository.findTop3ByOrderByNumeroDeDescargasDesc(librosDelAutor);
+        librosTop3DescargasAutor.forEach(l-> System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n" +
+                "|                                      | LIBRO: |\n" +
+                "| Título: " + l.getTitulo() + "\n" +
+                "| Número de descargas: " + l.getNumeroDeDescargas() + "\n" +
+                "| Recurso electrónico: " + l.getLibroElectronico() + "\n" +
+                "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n"));
+    }
+
     private void mostrarSubMenu(List<Libro> librosDelAutor, DoubleSummaryStatistics est) {
         String subMenu = "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n" +
                 "|                                        | Sub Menú: | \n" +
@@ -208,10 +218,11 @@ public class MetodosPrincipal {
                 "2) ¿Deseas ver la media de descargas en sus libros?" + "\n" +
                 "3) ¿Deseas ver su libro con más descargas?" + "\n" +
                 "4) ¿Deseas ver su libro con menos descargas?" + "\n" +
-                "5) Regresar al menú principal." + "\n";
+                "5) Ver top 3 libros más descargados del autor" + "\n" +
+                "6) Regresar al menú principal." + "\n";
 
         int decision = 0;
-        while (decision != 5) {
+        while (decision != 6) {
             String todasLasEstadisticas = "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n" +
                     "|                                 | ESTADÍSTICAS COMPLETAS: | \n" +
                     "| Total de libros en su autoría: " + est.getCount() + "\n" +
@@ -237,6 +248,9 @@ public class MetodosPrincipal {
                         System.out.println("\n | Libro menos descargado de su autoría: " + est.getMin());
                         break;
                     case 5:
+                        verTop3LibrosMasDescargadosDeAutor(librosDelAutor);
+                        break;
+                    case 6:
                         System.out.println("Regresando al menú principal...");
                         break;
                     default:

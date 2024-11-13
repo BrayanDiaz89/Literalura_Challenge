@@ -62,4 +62,6 @@ public interface LibroRepository extends JpaRepository<Libro, Long> {
     //Obtengo Top10 de los libros mas descargados en toda la base de datos.
     List<Libro> findTop10ByOrderByNumeroDeDescargasDesc();
 
+    List<Libro> findTop3ByOrderByNumeroDeDescargasDesc(List<Libro> librosDelAutor);
+
 }
