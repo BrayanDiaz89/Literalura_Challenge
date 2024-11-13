@@ -289,7 +289,7 @@ public class MetodosPrincipal {
         }
     }
 
-    public void verTop10LibrosMasDescargados() {
+    public void verTop10LibrosMasDescargadosBd() {
         List<Libro> librosTop10Descargas = repository.findTop10ByOrderByNumeroDeDescargasDesc();
         librosTop10Descargas.forEach(l-> System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n" +
                 "|                                      | LIBRO: |\n" +

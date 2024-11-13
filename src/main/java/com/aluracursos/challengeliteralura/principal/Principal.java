@@ -43,7 +43,7 @@ private Scanner teclado = new Scanner(System.in);
                 "| 3) Volver al menú principal.";
 
         int decision = 0;
-        while(decision != 8){
+        while(decision != 9){
             System.out.println(menu);
             try {
                 decision = teclado.nextInt();
@@ -92,6 +92,9 @@ private Scanner teclado = new Scanner(System.in);
                         metodo.verEstadisticasDeTusLibrosSegunAutor();
                         break;
                     case 8:
+                        metodo.verTop10LibrosMasDescargadosBd();
+                        break;
+                    case 9:
                         System.out.println("Saliendo del programa...");
                         teclado.close();
                         System.exit(0);
