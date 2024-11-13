@@ -20,6 +20,8 @@ public class MetodosPrincipal {
     private List<Libro> libros = new ArrayList<>();
     private Set<String> lenguajes;
     private final LibroRepository repository;
+    private Integer fechaInicio;
+    private Integer fechaFin;
 
     public MetodosPrincipal(LibroRepository repository) {
         this.repository = repository;
@@ -131,16 +133,34 @@ public class MetodosPrincipal {
         verAutoresYSusLibros(autores);
     }
 
-    public void verAutoresVivosDesdeFechaRecibida() {
+    public void verAutoresConFechaNacimientoRecibida() {
         try {
             System.out.println("Digite apartir de que fecha de nacimiento deseas ver los autores: ");
-            Integer fechaInicio = teclado.nextInt();
+            fechaInicio = teclado.nextInt();
+            System.out.println("Digite el límite de fecha de nacimiento de los autores que deseas ver: ");
+            fechaFin = teclado.nextInt();
+            List<Autor> autores = repository.findAllByFechaDeNacimiento(fechaInicio, fechaFin);
+
+            if(autores.isEmpty()){
+                System.out.println("No hay registros que coincidan con las fechas recibidas.");
+            }
+            verAutoresYSusLibros(autores);
+        }catch (InputMismatchException e){
+            System.out.println("Entrada no válida. Por favor, ingresa un valor numérico.");
+            teclado.nextLine();
+        }
+    }
+
+    public void verAutoresVivosEntreFechaRecibida() {
+        try {
+            System.out.println("Digite apartir de que fecha de nacimiento deseas ver los autores: ");
+            fechaInicio = teclado.nextInt();
             System.out.println("Digite hasta que fecha de deceso deseas ver los autores: ");
-            Integer fechaFin = teclado.nextInt();
+            fechaFin = teclado.nextInt();
             List<Autor> autores = repository.findAllByFechaDeVida(fechaInicio, fechaFin);
 
             if(autores.isEmpty()){
-                System.out.println("No hay registros de autores según las fechas de nacimiento recibidas.");
+                System.out.println("No hay registros que coincidan con las fechas recibidas.");
             }
             verAutoresYSusLibros(autores);
         }catch (InputMismatchException e){
@@ -163,5 +183,31 @@ public class MetodosPrincipal {
 
         List<Libro> librosConlenguajeConsultado = repository.findAllByLenguajeIngresado(lenguajeConvertido);
         librosConlenguajeConsultado.forEach(System.out::println);
+    }
+
+    public void verLibrosConSuRecursoElectronico() {
+        List<LibroAutorDTO> librosElectronicos = repository.findLibrosElectronicosConAutores();
+        if(librosElectronicos.isEmpty()){
+            System.out.println("No hay registros en la base de datos actualmente. Busca libros en el menú principal :).");
+        } else {
+            System.out.println("Los libros electrónicos disponibles en tú base de datos son: ");
+            librosElectronicos.forEach(l -> System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n" +
+                    "|                                      | LIBRO: |\n" +
+                    "| Título: " + l.titulo() + "\n" +
+                    "| Recurso descargable: " + l.libroElectronico() + "\n" +
+                    "| Autor: " + l.nombreAutor() + "\n" +
+                    "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n"));
+        }
+    }
+
+    public void verEstadisticasDeTusLibros() {
+        System.out.println("Digita el nombre del libro que deseas consultar, en cuanto a sus estadísticas: ");
+        nameLibro = teclado.nextLine();
+        Optional<Libro> estadisticaLibro = repository.findByTitulo(nameLibro);
+
+        if(!estadisticaLibro.isPresent()){
+            System.out.println("El libro ingresado, no ha sido encontrado. Intenta nuevamente.");
+        }
+
     }
 }
