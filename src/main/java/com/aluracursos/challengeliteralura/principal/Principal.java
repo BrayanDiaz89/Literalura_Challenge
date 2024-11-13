@@ -89,7 +89,7 @@ private Scanner teclado = new Scanner(System.in);
                         metodo.verLibrosConSuRecursoElectronico();
                         break;
                     case 7:
-                        metodo.verEstadisticasDeTusLibros();
+                        metodo.verEstadisticasDeTusLibrosSegunAutor();
                         break;
                     case 8:
                         System.out.println("Saliendo del programa...");

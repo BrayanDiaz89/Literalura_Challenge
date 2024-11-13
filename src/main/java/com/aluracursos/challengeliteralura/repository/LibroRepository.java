@@ -17,6 +17,14 @@ public interface LibroRepository extends JpaRepository<Libro, Long> {
     @Query("SELECT l FROM Libro l JOIN FETCH l.autores WHERE l.titulo = :titulo")
     Optional<Libro> findByTitulo(@Param("titulo") String titulo);
 
+    /*//Buscar Libros por nombre de Autor, con mayor coincidencia por la ingresada por el usuario, ordenar por mayor cantidad de coincidencias y traer el primero.
+    @Query("SELECT l FROM Libro l JOIN l.autores a WHERE a.nombre LIKE %:nombre% ORDER BY LENGTH(a.nombre) - LENGTH(REPLACE(a.nombre, :nombre, '')) DESC")
+    List<Libro> findByNombre(@Param("nombre") String nombre);*/
+
+    //Buscar Libros por nombre de Autor
+    @Query("SELECT l FROM Libro l JOIN l.autores a WHERE a.nombre LIKE %:nombre%")
+    List<Libro> findByNombre(@Param("nombre") String nombre);
+
     //Buscar libro por id
     @Query("SELECT l FROM Libro l JOIN FETCH l.autores WHERE l.id = :id")
     Optional<Libro> findByIdWithAutores(@Param("id")Long id);
@@ -35,7 +43,7 @@ public interface LibroRepository extends JpaRepository<Libro, Long> {
     List<Autor> findAllByFechaDeNacimiento(@Param("fechaInicio") Integer fechaInicio, @Param("fechaNacimientoMayor") Integer fechaNacimientoMayor);
 
     //Obtengo la lista de autores que nacen dentro de una fecha dada por el usuario y fallecen dentro de la fecha final dada por el usuario.
-    @Query("SELECT a FROM Autor a JOIN FETCH a.libros WHERE a.fechaDeNacimiento >= :fechaInicioConsulta AND e.fechaDeDeceso <= :fechaFinConsulta")
+    @Query("SELECT a FROM Autor a JOIN FETCH a.libros WHERE a.fechaDeNacimiento >= :fechaInicioConsulta AND a.fechaDeDeceso <= :fechaFinConsulta")
     List<Autor> findAllByFechaDeVida(@Param("fechaInicioConsulta") Integer fechaInicioConsulta, @Param("fechaFinConsulta") Integer fechaFinConsulta);
 
     //Obtengo la lista de libros según el lenguaje recibido por el usuario.
@@ -47,8 +55,11 @@ public interface LibroRepository extends JpaRepository<Libro, Long> {
     List<String> findDistinctListadoDeLenguajes();
 
     //Obtengo mis columnas nombre del libro, recurso descargable y nombre del autor. Utilizando mi clase record DTO
-    @Query("SELECT new com.aluracursos.challengeliteralura.models.LibroAutorDTO(l.titulo, l.libroelectronico, a.nombre) " +
-            "FROM Libro l JOINT l.autores a")
+    @Query("SELECT new com.aluracursos.challengeliteralura.models.LibroAutorDTO(l.titulo, l.libroElectronico, a.nombre) " +
+            "FROM Libro l JOIN l.autores a")
     List<LibroAutorDTO> findLibrosElectronicosConAutores();
+
+    //Obtengo Top10 de los libros mas descargados en toda la base de datos.
+    List<Libro> findTop10ByOrderByNumeroDeDescargasDesc();
 
 }

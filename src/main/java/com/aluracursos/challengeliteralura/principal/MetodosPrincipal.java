@@ -7,6 +7,7 @@ import com.aluracursos.challengeliteralura.service.ConvierteDatos;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 @Component
@@ -200,14 +201,87 @@ public class MetodosPrincipal {
         }
     }
 
-    public void verEstadisticasDeTusLibros() {
-        System.out.println("Digita el nombre del libro que deseas consultar, en cuanto a sus estadísticas: ");
-        nameLibro = teclado.nextLine();
-        Optional<Libro> estadisticaLibro = repository.findByTitulo(nameLibro);
+    private void mostrarSubMenu(List<Libro> librosDelAutor, DoubleSummaryStatistics est) {
+        String subMenu = "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n" +
+                "|                                        | Sub Menú: | \n" +
+                "1) ¿Deseas ver todas las estadísticas?" + "\n" +
+                "2) ¿Deseas ver la media de descargas en sus libros?" + "\n" +
+                "3) ¿Deseas ver su libro con más descargas?" + "\n" +
+                "4) ¿Deseas ver su libro con menos descargas?" + "\n" +
+                "5) Regresar al menú principal." + "\n";
 
-        if(!estadisticaLibro.isPresent()){
-            System.out.println("El libro ingresado, no ha sido encontrado. Intenta nuevamente.");
+        int decision = 0;
+        while (decision != 5) {
+            String todasLasEstadisticas = "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n" +
+                    "|                                 | ESTADÍSTICAS COMPLETAS: | \n" +
+                    "| Total de libros en su autoría: " + est.getCount() + "\n" +
+                    "| Media de descargas de sus libros: " + est.getAverage() + "\n" +
+                    "| Libro más descargado de su autoría: " + est.getMax() + "\n" +
+                    "| Libro menos descargado de su autoría: " + est.getMin() + "\n" +
+                    "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n";
+            try {
+                System.out.println(subMenu);
+                decision = teclado.nextInt();
+                teclado.nextLine();  // Limpia el salto de línea después de `nextInt`
+                switch (decision) {
+                    case 1:
+                        System.out.println(todasLasEstadisticas);
+                        break;
+                    case 2:
+                        System.out.println("\n | Media de descargas de sus libros: " + est.getAverage());
+                        break;
+                    case 3:
+                        System.out.println("\n | Libro más descargado de su autoría: " + est.getMax());
+                        break;
+                    case 4:
+                        System.out.println("\n | Libro menos descargado de su autoría: " + est.getMin());
+                        break;
+                    case 5:
+                        System.out.println("Regresando al menú principal...");
+                        break;
+                    default:
+                        System.out.println("Opción no válida, por favor intenta nuevamente.");
+                        break;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Entrada no válida. Por favor, ingresa un valor numérico.");
+                teclado.nextLine();
+            }
         }
-
     }
+
+    public void verEstadisticasDeTusLibrosSegunAutor() {
+
+        System.out.println("Digita el nombre del autor de los libros que deseas ver sus estadísticas: ");
+        String nameAutor = teclado.nextLine();
+
+        List<Libro> librosDelAutor = repository.findByNombre(nameAutor);
+
+        if (librosDelAutor.isEmpty()) {
+            System.out.println("\nEl autor ingresado, no se encuentra en la base de datos.");
+        } else {
+            librosDelAutor.forEach(l -> System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n" +
+                    "|                                      | LIBROS DE SU AUTORÍA: |\n" +
+                    "| Autor: " + nameAutor +"\n" +
+                    "| Título: " + l.getTitulo() + "\n" +
+                    "| Número de descargas: " + l.getNumeroDeDescargas() + "\n" +
+                    "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n"));
+
+            DoubleSummaryStatistics est = librosDelAutor.stream()
+                    .filter(l -> l.getNumeroDeDescargas() > 0.0)
+                    .collect(Collectors.summarizingDouble(Libro::getNumeroDeDescargas));
+            mostrarSubMenu(librosDelAutor, est);
+        }
+    }
+
+    public void verTop10LibrosMasDescargados() {
+        List<Libro> librosTop10Descargas = repository.findTop10ByOrderByNumeroDeDescargasDesc();
+        librosTop10Descargas.forEach(l-> System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n" +
+                "|                                      | LIBRO: |\n" +
+                "| Título: " + l.getTitulo() + "\n" +
+                "| Número de descargas: " + l.getNumeroDeDescargas() + "\n" +
+                "| Recurso electrónico: " + l.getLibroElectronico() + "\n" +
+                "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n"));
+    }
+
 }
