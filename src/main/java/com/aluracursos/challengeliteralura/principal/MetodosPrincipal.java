@@ -4,6 +4,7 @@ import com.aluracursos.challengeliteralura.models.*;
 import com.aluracursos.challengeliteralura.repository.LibroRepository;
 import com.aluracursos.challengeliteralura.service.ConsumoAPI;
 import com.aluracursos.challengeliteralura.service.ConvierteDatos;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -201,8 +202,8 @@ public class MetodosPrincipal {
         }
     }
 
-    public void verTop3LibrosMasDescargadosDeAutor(List<Libro> librosDelAutor) {
-        List<Libro> librosTop3DescargasAutor = repository.findTop3ByOrderByNumeroDeDescargasDesc(librosDelAutor);
+    public void verTop3LibrosMasDescargadosDeAutor(String nombreAutor) {
+        List<Libro> librosTop3DescargasAutor = repository.findTop3ByAutorOrderByNumeroDeDescargasDesc(nombreAutor, PageRequest.of(0, 3));//Asigno la cantidad límite de datos que requiero
         librosTop3DescargasAutor.forEach(l-> System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n" +
                 "|                                      | LIBRO: |\n" +
                 "| Título: " + l.getTitulo() + "\n" +
@@ -211,7 +212,7 @@ public class MetodosPrincipal {
                 "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n"));
     }
 
-    private void mostrarSubMenu(List<Libro> librosDelAutor, DoubleSummaryStatistics est) {
+    private void mostrarSubMenu(List<Libro> librosDelAutor, DoubleSummaryStatistics est, String nameAutor) {
         String subMenu = "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n" +
                 "|                                        | Sub Menú: | \n" +
                 "1) ¿Deseas ver todas las estadísticas?" + "\n" +
@@ -242,13 +243,13 @@ public class MetodosPrincipal {
                         System.out.println("\n | Media de descargas de sus libros: " + est.getAverage());
                         break;
                     case 3:
-                        System.out.println("\n | Libro más descargado de su autoría: " + est.getMax());
+                        System.out.println("\n | Número de descargas del libro más descargado en su autoría: " + est.getMax());
                         break;
                     case 4:
-                        System.out.println("\n | Libro menos descargado de su autoría: " + est.getMin());
+                        System.out.println("\n | Número de descargas del libro menos descargado en su autoría: " + est.getMin());
                         break;
                     case 5:
-                        verTop3LibrosMasDescargadosDeAutor(librosDelAutor);
+                        verTop3LibrosMasDescargadosDeAutor(nameAutor);
                         break;
                     case 6:
                         System.out.println("Regresando al menú principal...");
@@ -284,7 +285,7 @@ public class MetodosPrincipal {
             DoubleSummaryStatistics est = librosDelAutor.stream()
                     .filter(l -> l.getNumeroDeDescargas() > 0.0)
                     .collect(Collectors.summarizingDouble(Libro::getNumeroDeDescargas));
-            mostrarSubMenu(librosDelAutor, est);
+            mostrarSubMenu(librosDelAutor, est, nameAutor);
         }
     }
 

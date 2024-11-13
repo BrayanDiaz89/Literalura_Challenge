@@ -3,13 +3,13 @@ package com.aluracursos.challengeliteralura.repository;
 import com.aluracursos.challengeliteralura.models.Autor;
 import com.aluracursos.challengeliteralura.models.Libro;
 import com.aluracursos.challengeliteralura.models.LibroAutorDTO;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 public interface LibroRepository extends JpaRepository<Libro, Long> {
 
@@ -62,6 +62,10 @@ public interface LibroRepository extends JpaRepository<Libro, Long> {
     //Obtengo Top10 de los libros mas descargados en toda la base de datos.
     List<Libro> findTop10ByOrderByNumeroDeDescargasDesc();
 
-    List<Libro> findTop3ByOrderByNumeroDeDescargasDesc(List<Libro> librosDelAutor);
+    //Obtengo el top 3 de los libros más descargados por el autor, el uso de PageRequest pageable es para limitar mi consulta a un número de datos, en este caso 3
+    @Query("SELECT l FROM Libro l JOIN l.autores a WHERE a.nombre LIKE %:nombreAutor% ORDER BY l.numeroDeDescargas DESC")
+    List<Libro> findTop3ByAutorOrderByNumeroDeDescargasDesc(@Param("nombreAutor") String nombreAutor, PageRequest pageable); //En mi MetodosPrincipal lo asigno al llamarla.
+
+
 
 }
