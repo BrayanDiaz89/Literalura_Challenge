@@ -29,7 +29,9 @@ private Scanner teclado = new Scanner(System.in);
                 "| 5) Buscar libros por idiomas.\n"+
                 "| 6) Listar todos los libros con su recurso electrónico descargable.\n"+
                 "| 7) Ver estadísticas de tus libros.\n"+
-                "| 8) Salir.";
+                "| 8) Ver top 10 libros más descargados (Base de datos).\n"+
+                "| 9) Salir.";
+
         String menuCase4 = "\n------|=!=!=| - Sub Menú: - |=!=!|------\n"+
                 "| Elige una opción para navegar en tú catálogo: \n"+
                 "| 1) Ver autores que nacieron entre fecha inicial y fecha mayor. \n"+
@@ -59,9 +61,9 @@ private Scanner teclado = new Scanner(System.in);
                         metodo.getAutores();
                         break;
                     case 4:
-                        while (true) {
-                            System.out.println(menuCase4);
+                        while (decision != 3) {
                             try {
+                                System.out.println(menuCase4);
                                 decision = teclado.nextInt();
                                 switch (decision) {
                                     case 1:
@@ -82,6 +84,7 @@ private Scanner teclado = new Scanner(System.in);
                                 teclado.nextLine();
                             }
                         }
+                        break;
                     case 5:
                         metodo.buscarLibrosPorIdioma();
                         break;

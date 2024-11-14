@@ -173,18 +173,29 @@ public class MetodosPrincipal {
 
     public void buscarLibrosPorIdioma() {
 
-        List<String> listaDeLenguajes = repository.findDistinctListadoDeLenguajes();
-        System.out.println("Lenguajes disponibles en tus libros: ");
-        for(String lenguaje : listaDeLenguajes){
+        List<String> listaDeLenguajes = repository.findDistinctListadoDeLenguajes()
+                .stream()
+                .map(l-> l.split(",")[0].trim())
+                .collect(Collectors.toList());
+        while(true){
+            System.out.println("Lenguajes disponibles en tus libros: ");
             int i = 1 ;
-            System.out.println("| "+ i + ") "  + lenguaje.replaceAll("[\\[\\]]", " "));
-        }
-        System.out.println("Digita el lenguaje de los libros que deseas consultar: ");
-        String lenguajeUsuario = teclado.nextLine();
-        String lenguajeConvertido = "["+lenguajeUsuario+"]";
+            for(String lenguaje : listaDeLenguajes){
+                System.out.println("| "+ i + ") "  + lenguaje.replaceAll("[\\[\\]]", " "));
+                i++;
+            }
+            System.out.println("Digita el lenguaje de los libros que deseas consultar (solo letras): ");
+            String lenguajeUsuario = teclado.nextLine().toLowerCase();
+            String lenguajeConvertido = "["+lenguajeUsuario+"]";
 
-        List<Libro> librosConlenguajeConsultado = repository.findAllByLenguajeIngresado(lenguajeConvertido);
-        librosConlenguajeConsultado.forEach(System.out::println);
+            if(listaDeLenguajes.contains(lenguajeConvertido)){
+                List<Libro> librosConlenguajeConsultado = repository.findAllByLenguajeIngresado(lenguajeConvertido);
+                librosConlenguajeConsultado.forEach(System.out::println);
+                break;
+            } else {
+                System.out.println("El lenguaje ingresado, no está en la lista.");
+            }
+        }
     }
 
     public void verLibrosConSuRecursoElectronico() {
@@ -240,13 +251,13 @@ public class MetodosPrincipal {
                         System.out.println(todasLasEstadisticas);
                         break;
                     case 2:
-                        System.out.println("\n | Media de descargas de sus libros: " + est.getAverage());
+                        System.out.println("\n| Media de descargas de sus libros: " + est.getAverage());
                         break;
                     case 3:
-                        System.out.println("\n | Número de descargas del libro más descargado en su autoría: " + est.getMax());
+                        System.out.println("\n| Número de descargas del libro más descargado en su autoría: " + est.getMax());
                         break;
                     case 4:
-                        System.out.println("\n | Número de descargas del libro menos descargado en su autoría: " + est.getMin());
+                        System.out.println("\n| Número de descargas del libro menos descargado en su autoría: " + est.getMin());
                         break;
                     case 5:
                         verTop3LibrosMasDescargadosDeAutor(nameAutor);
