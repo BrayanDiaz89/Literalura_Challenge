@@ -7,7 +7,6 @@ import com.aluracursos.challengeliteralura.service.ConvierteDatos;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 
-import java.sql.SQLOutput;
 import java.util.*;
 import java.util.stream.Collectors;
 
