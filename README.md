@@ -3,7 +3,6 @@
 ![portada project catalogo de libros](https://github.com/user-attachments/assets/d7420998-9673-42dc-82bf-accd00a53772)
 
 <p align="center">
-  <img alt="Static Badge" src="https://img.shields.io/badge/STATUS-EN%20DESARROLLO-green">
   <img alt="Static Badge" src="https://img.shields.io/badge/Release%20date-November%202024-green">
   <img alt="Static Badge" src="https://img.shields.io/badge/Status-En%20constante%20desarrollo-green">
   <img alt="Static Badge" src="https://img.shields.io/badge/Project%20version-1.0-blue">
