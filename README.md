@@ -9,9 +9,15 @@
   <img alt="Static Badge" src="https://img.shields.io/badge/Java%20version-17.0-blue">
   <img alt="Static Badge" src="https://img.shields.io/badge/Spring%20version-3.3.5-blue">
 </p>
-## Introducción:
+<h2>Introducción:</h2>
+<hr>
 <p align="justify">
   Disfruta de una experiencia inolvidable, consultando y almacenando tus libros favoritos personalizada mente en tú ambiente     local.
+</p>
+<p align="justify">
+  Bienvenido a Literalura, un sistema completo realizado en <b>Java con Spring boot</b>, el cual te permitirá consultar tus libros favoritos, y almacenarlos localmente en una base de datos propia gestionada por <b>PostgreSql</b>, abstrayendo los datos de la <b>API</b> <a href="https://gutendex.com/">Gutendex</a>, brindando así una gran facilidad en la manipulación de los datos y posteriormente su visualización en consola:
+![vista de libro en el catalogo](https://github.com/user-attachments/assets/1418d224-c02d-4d4d-ae88-8161e27079bf)
+Como observas anteriormente, podrás visualizar la información más relevante de tus libros, como también obtener su imagen de portada como <b>poster</b> y la descarga de su libro electrónico, por medio de la representación <b>Libro electrónico (.zip)</b>.
 </p>
 README EN CONSTRUCCIÓN...
 Implementación de un sistema capaz de captar información de libros por medio de una api, almacenarlos localmente en la base de datos, y mostrarlos.
