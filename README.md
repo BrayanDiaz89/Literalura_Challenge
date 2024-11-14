@@ -33,6 +33,8 @@ Como observas anteriormente, podrás visualizar la información más relevante d
 
 ![MenuPrincipal_Funcionalidades](https://github.com/user-attachments/assets/c6c6093d-edf8-46cd-90f5-e21c703bb01d)
 
+<hr>
+
 ## 🧠 Tecnologías utilizadas: 
 - Java 17.0
   - Java Streams y Lambdas
@@ -51,8 +53,14 @@ Como observas anteriormente, podrás visualizar la información más relevante d
 - Manejo de excepciones.
 
 <hr>
-  
 
+## 📂 Accceso al proyecto: 
+![TutorialdeDescarga](https://github.com/user-attachments/assets/45294179-c3ac-45c6-9989-4311f6b82b50)
+<p>Dale click en <strong color="red">Download ZIP</strong></p>
+<p>Posteriormente asegurate de tener instalado un editor de código, preferiblemente IntelliJ, desde allí: </p>
 
+![Tutorialdescarga1](https://github.com/user-attachments/assets/15e48718-903c-444f-9604-d50bf9d2d32c)
 
+<p align="justify">Dale click en el menú, para posteriormente darle en Open File, y abre la carpeta descomprimida, una vez lo realices, podrás ejecutar desde la clase main el programa:  </p>
 
+![Tutorialdescarga2](https://github.com/user-attachments/assets/6d4277b8-7f8f-4183-b9cc-90dd4b3f9273)
