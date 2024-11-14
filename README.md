@@ -18,8 +18,8 @@
 </p>
 <p align="center">
   
-    ![vistaDeLibro](https://github.com/user-attachments/assets/562a58a0-c080-4bff-8894-43c02d77c8ab)
-    
+![vistaDeLibro](https://github.com/user-attachments/assets/cdafcab4-523a-4903-b61c-3d4df5aaacd6)
+
 </p>
 <p align="justify">
 Como observas anteriormente, podrás visualizar la información más relevante de tus libros, como también obtener su imagen de portada como <b>poster</b> y la descarga de su libro electrónico, por medio de la representación <b>Libro electrónico (.zip)</b>.
