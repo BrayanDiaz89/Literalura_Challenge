@@ -21,5 +21,38 @@
 Como observas anteriormente, podrás visualizar la información más relevante de tus libros, como también obtener su imagen de portada como <b>poster</b> y la descarga de su libro electrónico, por medio de la representación <b>Libro electrónico (.zip)</b>.
 </p>
 
-README EN CONSTRUCCIÓN...
-Implementación de un sistema capaz de captar información de libros por medio de una api, almacenarlos localmente en la base de datos, y mostrarlos.
+# 🔨Funcionalidades del proyecto:
+- `Funcionalidad 1`: Conexión a la API <a href="https://gutendex.com/" target="_blank">Gutendex</a> para abstraer los datos de los libros consultados.
+- `Funcionalidad 2`: Buscar libros por titulo o nombre de autor y almacenarlos en la base de datos gestionada con <b>PostgreSql</b>, en caso de que no estén ya guardados, para posteriormente visualizarlos.
+- `Funcionalidad 3`: Ver libros guardados en tú base de datos, como también ver autores guardados en tú base de datos, con los nombres de los libros en su autoría.
+- `Funcionalidad 4`: Filtrar autores por fecha de nacimiento y fecha de deceso (Base de datos)
+- `Funcionalidad 5`: Filtrar libros por idiomas disponibles.
+- `Funcionalidad 6`: Listar todos los libros de la base de datos con su recurso electrónico descargable, como también listar solo los libros de un autor específico con su recurso electrónico descargable.
+- `Funcionalidad 7`: Ver estadísticas de tus libros (Según autor relacionado), visualizando sus números de libros en su autoría, promedio de descargas de sus libros, número de descargas más alto en uno de sus libros y número más bajo. También su top 3 de libros más descargados.
+- `Funcionalidad 8`: Ver el top 10 de los libros más descargados en toda tú base de datos.
+
+![MenuPrincipal_Funcionalidades](https://github.com/user-attachments/assets/c6c6093d-edf8-46cd-90f5-e21c703bb01d)
+
+## 🧠 Tecnologías utilizadas: 
+- Java 17.0
+  - Java Streams y Lambdas
+  - Colecciones Java
+- Spring Framework (versión: 3.3.5)
+  - Spring boot
+  - Spring Data JPA
+  - Componentes de Spring (@Component, @Autowired)
+- PostgreSQL
+- Hibernate
+- Anotaciones JPA (@Entity, @Table, @ManyToMany, etc) 
+- API Gutendex
+- Jackson
+- Anotaciones JSON (@JsonAlias, @JsonIgnoreProperties, etc).
+- Anotaciones Query (@Query). Consultas JPA
+- Manejo de excepciones.
+
+<hr>
+  
+
+
+
+
