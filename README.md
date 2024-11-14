@@ -6,7 +6,7 @@
   <img alt="Static Badge" src="https://img.shields.io/badge/STATUS-EN%20DESARROLLO-green">
   <img alt="Static Badge" src="https://img.shields.io/badge/Release%20date-November%202024-green">
   <img alt="Static Badge" src="https://img.shields.io/badge/Status-En%20constante%20desarrollo-green">
-  <img alt="Static Badge" src="https://img.shields.io/badge/version-1.0-blue">
+  <img alt="Static Badge" src="https://img.shields.io/badge/Project%20version-1.0-blue">
   <img alt="Static Badge" src="https://img.shields.io/badge/Java%20version-17.0-blue">
   <img alt="Static Badge" src="https://img.shields.io/badge/Spring%20version-3.3.5-blue">
 
