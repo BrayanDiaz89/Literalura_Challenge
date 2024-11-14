@@ -74,12 +74,6 @@ public class Autor {
 
     @Override
     public String toString() {
-
-        return  "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n" +
-                "|                                      | AUTOR: |\n" +
-                "| Nombre: " + nombre + "\n" +
-                "| Año de Nacimiento: " + fechaDeNacimiento + "\n" +
-                "| Año de Deceso: " + fechaDeDeceso + "\n" +
-                "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n";
+        return  "Autor: " + nombre;
     }
 }

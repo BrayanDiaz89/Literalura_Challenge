@@ -28,9 +28,10 @@ private Scanner teclado = new Scanner(System.in);
                 "| 4) Ver autores según fecha de nacimiento (Fecha desde, fecha hasta).\n"+
                 "| 5) Buscar libros por idiomas.\n"+
                 "| 6) Listar todos los libros con su recurso electrónico descargable.\n"+
-                "| 7) Ver estadísticas de tus libros.\n"+
-                "| 8) Ver top 10 libros más descargados (Base de datos).\n"+
-                "| 9) Salir.";
+                "| 7) Listar todos los libros de un autor con su recurso electrónico descargable.\n"+
+                "| 8) Ver estadísticas de tus libros.\n"+
+                "| 9) Ver top 10 libros más descargados (Base de datos).\n"+
+                "| 10) Salir.";
 
         String menuCase4 = "\n------|=!=!=| - Sub Menú: - |=!=!|------\n"+
                 "| Elige una opción para navegar en tú catálogo: \n"+
@@ -45,7 +46,7 @@ private Scanner teclado = new Scanner(System.in);
                 "| 3) Volver al menú principal.";
 
         int decision = 0;
-        while(decision != 9){
+        while(decision != 10){
             System.out.println(menu);
             try {
                 decision = teclado.nextInt();
@@ -92,12 +93,15 @@ private Scanner teclado = new Scanner(System.in);
                         metodo.verLibrosConSuRecursoElectronico();
                         break;
                     case 7:
-                        metodo.verEstadisticasDeTusLibrosSegunAutor();
+                        metodo.verLibrosConRecursoElectronicoDelAutor();
                         break;
                     case 8:
-                        metodo.verTop10LibrosMasDescargadosBd();
+                        metodo.verEstadisticasDeTusLibrosSegunAutor();
                         break;
                     case 9:
+                        metodo.verTop10LibrosMasDescargadosBd();
+                        break;
+                    case 10:
                         System.out.println("Saliendo del programa...");
                         teclado.close();
                         System.exit(0);

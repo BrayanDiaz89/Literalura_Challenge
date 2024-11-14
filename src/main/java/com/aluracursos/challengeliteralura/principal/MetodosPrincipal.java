@@ -7,6 +7,7 @@ import com.aluracursos.challengeliteralura.service.ConvierteDatos;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 
+import java.sql.SQLOutput;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -81,7 +82,7 @@ public class MetodosPrincipal {
             System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
             System.out.println("|                                      | AUTOR: |");
             System.out.println(datosAutor);
-            System.out.println("| Libros: -- " + String.join(" -- ", libros) + " --");
+            System.out.println("| Libros: | " + String.join(" | ", libros) + " | ");
             System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
         }
     }
@@ -213,6 +214,33 @@ public class MetodosPrincipal {
         }
     }
 
+    public void verLibrosConRecursoElectronicoDelAutor(){
+        System.out.println("Digita el nombre del autor de los libros que deseas ver sus estadísticas: ");
+        String nameAutor = teclado.nextLine();
+        //Validar si la cadena nombre del autor ingresado es demasiado corta, para cancelar la búsqueda
+        if(nameAutor.length() < 4){
+            System.out.println("La búsqueda es demasiado corta, debes escribir un nombre de autor más completo.");
+        } else{
+
+            List<Libro> librosDelAutor = repository.findByNombre(nameAutor);
+            //Si la lista está vacía, quiere decir que el autor no fue encontrado en la base de datos.
+            if (librosDelAutor.isEmpty()) {
+                System.out.println("\nEl autor ingresado, no se encuentra en la base de datos.");
+            } else {
+                System.out.println("        ||-- LIBROS ELECTRÓNICOS DEL AUTOR --||         ");
+                //Imprimo los datos con uso de Lambda, para una mejor práctica
+                librosDelAutor.forEach(l -> System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n" +
+                        "|                                      | LIBRO |\n" +
+                        "| " + l.getAutores().toString().replaceAll("[\\[\\]]", "") + "\n" +
+                        "| Título: " + l.getTitulo() + "\n" +
+                        "| Lenguaje: " + l.getLenguaje() + "\n" +
+                        "| Número de descargas: " + l.getNumeroDeDescargas() + "\n" +
+                        "| Libro electrónico (.zip): " + l.getLibroElectronico() + "\n" +
+                        "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n"));
+            }
+        }
+    }
+
     public void verTop3LibrosMasDescargadosDeAutor(String nombreAutor) {
         List<Libro> librosTop3DescargasAutor = repository.findTop3ByAutorOrderByNumeroDeDescargasDesc(nombreAutor, PageRequest.of(0, 3));//Asigno la cantidad límite de datos que requiero
         librosTop3DescargasAutor.forEach(l-> System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n" +
@@ -280,34 +308,48 @@ public class MetodosPrincipal {
 
         System.out.println("Digita el nombre del autor de los libros que deseas ver sus estadísticas: ");
         String nameAutor = teclado.nextLine();
+        //Validar si la cadena nombre del autor ingresado es demasiado corta, para cancelar la búsqueda
+        if(nameAutor.length() < 4){
+            System.out.println("La búsqueda es demasiado corta, debes escribir un nombre de autor más completo.");
+        } else{
 
         List<Libro> librosDelAutor = repository.findByNombre(nameAutor);
-
+        //Si la lista está vacía, quiere decir que el autor no fue encontrado en la base de datos.
         if (librosDelAutor.isEmpty()) {
             System.out.println("\nEl autor ingresado, no se encuentra en la base de datos.");
         } else {
+            //Imprimo los datos con uso de Lambda, para una mejor práctica
             librosDelAutor.forEach(l -> System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n" +
                     "|                                      | LIBROS DE SU AUTORÍA: |\n" +
-                    "| Autor: " + nameAutor +"\n" +
+                    "| "+ l.getAutores().toString().replaceAll("[\\[\\]]", "") +"\n" +
                     "| Título: " + l.getTitulo() + "\n" +
                     "| Número de descargas: " + l.getNumeroDeDescargas() + "\n" +
+                    "| Libro electrónico (.zip): " + l.getLibroElectronico() + "\n" +
                     "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n"));
 
             DoubleSummaryStatistics est = librosDelAutor.stream()
                     .filter(l -> l.getNumeroDeDescargas() > 0.0)
                     .collect(Collectors.summarizingDouble(Libro::getNumeroDeDescargas));
             mostrarSubMenu(librosDelAutor, est, nameAutor);
+            }
         }
     }
 
     public void verTop10LibrosMasDescargadosBd() {
         List<Libro> librosTop10Descargas = repository.findTop10ByOrderByNumeroDeDescargasDesc();
+
+        //Si la lista está vacía, quiere decir que no hay libros en la base de datos.
+        if(librosTop10Descargas.isEmpty()){
+            System.out.println("No hay registros en la base de datos actualmente. Busca libros en el menú principal :).");
+        } else {
         librosTop10Descargas.forEach(l-> System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n" +
                 "|                                      | LIBRO: |\n" +
+                "| " + l.getAutores().toString().replaceAll("[\\[\\]]", "") + "\n" +
                 "| Título: " + l.getTitulo() + "\n" +
+                "| Lenguaje: " + l.getLenguaje() + "\n" +
                 "| Número de descargas: " + l.getNumeroDeDescargas() + "\n" +
                 "| Recurso electrónico: " + l.getLibroElectronico() + "\n" +
                 "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n"));
+        }
     }
-
 }
