@@ -1,5 +1,7 @@
-<h1><center>LITERALURA - CATÁLOGO DE LIBROS</h1></center>
-![portada jpg](https://github.com/user-attachments/assets/a50de584-7b1e-43a9-8e52-a452aee07e5a)
+<h1 align="center">LITERALURA - CATÁLOGO DE LIBROS</h1>
+
+![portada](https://github.com/user-attachments/assets/d7420998-9673-42dc-82bf-accd00a53772)
+
 
 
 README EN CONSTRUCCIÓN...
