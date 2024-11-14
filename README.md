@@ -21,6 +21,7 @@
 Como observas anteriormente, podrás visualizar la información más relevante de tus libros, como también obtener su imagen de portada como <b>poster</b> y la descarga de su libro electrónico, por medio de la representación <b>Libro electrónico (.zip)</b>.
 </p>
 <hr>
+
 # 🔨Funcionalidades del proyecto:
 - `Funcionalidad 1`: Conexión a la API <a href="https://gutendex.com/" target="_blank">Gutendex</a> para abstraer los datos de los libros consultados.
 - `Funcionalidad 2`: Buscar libros por titulo o nombre de autor y almacenarlos en la base de datos gestionada con <b>PostgreSql</b>, en caso de que no estén ya guardados, para posteriormente visualizarlos.
