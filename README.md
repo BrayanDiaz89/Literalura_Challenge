@@ -8,8 +8,10 @@
   <img alt="Static Badge" src="https://img.shields.io/badge/Project%20version-1.0-blue">
   <img alt="Static Badge" src="https://img.shields.io/badge/Java%20version-17.0-blue">
   <img alt="Static Badge" src="https://img.shields.io/badge/Spring%20version-3.3.5-blue">
-
 </p>
-
+## Introducción:
+<p align="justify">
+  Disfruta de una experiencia inolvidable, consultando y almacenando tus libros favoritos personalizada mente en tú ambiente     local.
+</p>
 README EN CONSTRUCCIÓN...
 Implementación de un sistema capaz de captar información de libros por medio de una api, almacenarlos localmente en la base de datos, y mostrarlos.
