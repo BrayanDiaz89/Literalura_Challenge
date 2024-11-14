@@ -4,6 +4,7 @@ import com.aluracursos.challengeliteralura.models.*;
 import com.aluracursos.challengeliteralura.repository.LibroRepository;
 import com.aluracursos.challengeliteralura.service.ConsumoAPI;
 import com.aluracursos.challengeliteralura.service.ConvierteDatos;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 
@@ -33,19 +34,23 @@ public class MetodosPrincipal {
     public DatosLibro getDatosLibro() {
         System.out.println("Escribe el nombre del libro que deseas buscar: ");
         nameLibro = teclado.nextLine();
-        var json = consumoAPI.obtenerDatos(URL_BASE + "?search=" + nameLibro.replace(" ", "+"));
-        //System.out.println("JSON recibido: " + json);
-
-        // Cambia el tipo de deserialización a ResultadoAPI
-        ResultadoAPI resultado = conversor.obtenerDatos(json, ResultadoAPI.class);
-        if (resultado.libros() != null && !resultado.libros().isEmpty()) {
-            DatosLibro datos = resultado.libros().get(0); // Toma el primer libro
-            //System.out.println("Datos deserializados: " + datos);
-            return datos;
+        if (nameLibro.length() < 4) {
+            System.out.println("El nombre del libro ingresado es muy corto, escribe un nombre completo.");
         } else {
-            //System.out.println("No se encontraron datos de libros en el JSON.");
-            return null;
+            var json = consumoAPI.obtenerDatos(URL_BASE + "?search=" + nameLibro.replace(" ", "+"));
+            //System.out.println("JSON recibido: " + json);
+            // Cambia el tipo de deserialización a ResultadoAPI
+            ResultadoAPI resultado = conversor.obtenerDatos(json, ResultadoAPI.class);
+            if (resultado.libros() != null && !resultado.libros().isEmpty()) {
+                DatosLibro datos = resultado.libros().get(0); // Toma el primer libro
+                //System.out.println("Datos deserializados: " + datos);
+                return datos;
+            } else {
+                //System.out.println("No se encontraron datos de libros en el JSON.");
+                return null;
+            }
         }
+        return null;
     }
 
     public void verAutoresYSusLibros(List<Autor> autores) {
@@ -88,6 +93,7 @@ public class MetodosPrincipal {
 
     //Metodo para consultar en la base de datos y agregar libro de la api, si no existe.
     public void buscarLibroWeb() {
+        try{
             DatosLibro datos = getDatosLibro();
             if (datos == null) {
                 System.out.println("El libro buscado no fue encontrado.");
@@ -118,6 +124,9 @@ public class MetodosPrincipal {
                 String primerLenguaje = libro.getLenguaje().isEmpty() ? "" : libro.getLenguaje();
                 lenguajes.add(primerLenguaje);
             }
+        }catch (DataIntegrityViolationException e) {
+            System.out.println("\nNo es posible ingresar este libro a tú base de datos. Intenta con otro, por favor.");
+        }
     }
     public void getLibros(){
         libros = repository.findAllWithAutores();

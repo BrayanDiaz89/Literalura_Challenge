@@ -39,12 +39,6 @@ private Scanner teclado = new Scanner(System.in);
                 "| 2) Ver autores que nacieron entre fecha inicial y fallecen entre fecha mayor.\n"+
                 "| 3) Volver al menú principal.";
 
-        String menuCase6= "\n------|=!=!=| - Sub Menú: - |=!=!|------\n"+
-                "| Elige una opción para navegar en tú catálogo: \n"+
-                "| 1) Ver autores que nacieron entre fecha inicial y fecha mayor. \n"+
-                "| 2) Ver autores que nacieron entre fecha inicial y fallecen entre fecha mayor.\n"+
-                "| 3) Volver al menú principal.";
-
         int decision = 0;
         while(decision != 10){
             System.out.println(menu);
