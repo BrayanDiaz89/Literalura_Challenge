@@ -10,7 +10,6 @@
   <img alt="Static Badge" src="https://img.shields.io/badge/Spring%20version-3.3.5-blue">
 </p>
 <h2>Introducción:</h2>
-<hr>
 <p align="justify">
   Disfruta de una experiencia inolvidable, consultando y almacenando tus libros favoritos personalizada mente en tú ambiente     local.
 </p>
