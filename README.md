@@ -14,7 +14,7 @@
   Disfruta de una experiencia inolvidable, consultando y almacenando tus libros favoritos personalizada mente en tú ambiente     local.
 </p>
 <p align="justify">
-  Bienvenido a Literalura, un sistema completo realizado en <b>Java con Spring boot</b>, el cual te permitirá consultar tus libros favoritos, y almacenarlos localmente en una base de datos propia gestionada por <b>PostgreSql</b>, abstrayendo los datos de la <b>API</b> <a href="https://gutendex.com/">Gutendex</a>, brindando así una gran facilidad en la manipulación de los datos y posteriormente su visualización en consola:
+  Bienvenido a Literalura, un sistema completo realizado en <b>Java con Spring boot</b>, el cual te permitirá consultar tus libros favoritos, y almacenarlos localmente en una base de datos propia gestionada por <b>PostgreSql</b>, abstrayendo los datos de la <b>API</b> <a href="https://gutendex.com/" target="_blank">Gutendex</a>, brindando así una gran facilidad en la manipulación de los datos y posteriormente su visualización en consola:
 
 ![vistaDeLibro](https://github.com/user-attachments/assets/aa7c3396-6228-4ca7-8939-3a3f2e1c5494)
 
