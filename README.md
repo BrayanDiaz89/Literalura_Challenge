@@ -20,7 +20,7 @@
 
 Como observas anteriormente, podrás visualizar la información más relevante de tus libros, como también obtener su imagen de portada como <b>poster</b> y la descarga de su libro electrónico, por medio de la representación <b>Libro electrónico (.zip)</b>.
 </p>
-
+<hr>
 # 🔨Funcionalidades del proyecto:
 - `Funcionalidad 1`: Conexión a la API <a href="https://gutendex.com/" target="_blank">Gutendex</a> para abstraer los datos de los libros consultados.
 - `Funcionalidad 2`: Buscar libros por titulo o nombre de autor y almacenarlos en la base de datos gestionada con <b>PostgreSql</b>, en caso de que no estén ya guardados, para posteriormente visualizarlos.
@@ -63,4 +63,5 @@ Como observas anteriormente, podrás visualizar la información más relevante d
 
 <p align="justify">Dale click en el menú, para posteriormente darle en Open File, y abre la carpeta descomprimida, una vez lo realices, podrás ejecutar desde la clase main el programa:  </p>
 
-![Tutorialdescarga2](https://github.com/user-attachments/assets/6d4277b8-7f8f-4183-b9cc-90dd4b3f9273)
+![Ejecutar el proyecto](https://github.com/user-attachments/assets/ca556a8b-d13b-47e1-a178-d9b416216fb5)
+
