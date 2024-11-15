@@ -62,13 +62,6 @@ Como observas anteriormente, podrás visualizar la información más relevante d
 
 ![Tutorialdescarga1](https://github.com/user-attachments/assets/15e48718-903c-444f-9604-d50bf9d2d32c)
 
-<p align="justify">Dale click en el menú, para posteriormente darle en Open File, y abre la carpeta descomprimida, una vez lo realices, podrás navegar en las carpetas de la izquierda, como se ve el despliegue a continuación: </p>
-<p>
-
-![Ejecutar el proyecto](https://github.com/user-attachments/assets/ca556a8b-d13b-47e1-a178-d9b416216fb5)
-
-</p>
-
 <p align="justify>
   
 <b>Antes de ejecutar</b>, es importante ajustar tus variables de entorno en Windows o Linux, te dejo un breve ejemplo de en donde puedes encontrar las variables de entorno en <b>Windows</b>:
@@ -84,6 +77,14 @@ Como observas anteriormente, podrás visualizar la información más relevante d
 <p align="justify">
 Dar click en donde dice variables de entorno, y modificarlas. ⬆️
 </p>
+
+<p align="justify">Dale click en el menú, para posteriormente darle en Open File, y abre la carpeta descomprimida, una vez lo realices, podrás navegar en las carpetas de la izquierda, como se ve el despliegue a continuación: </p>
+<p>
+
+![Ejecutar el proyecto](https://github.com/user-attachments/assets/ca556a8b-d13b-47e1-a178-d9b416216fb5)
+
+</p>
+
 <p align="justify">
 En el menú de la izquierda, debes dar click en resources e ingresar a 🚧 <b>aplication.properties</b>, y visualizarás los nombres de las variables de entorno configuradas por mi (Puedes modificarlas y manipular el proyecto a tú gusto, para que coincidan con las tuyas). A continuación son representadas: 🎨
 </p>
