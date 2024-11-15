@@ -72,7 +72,7 @@ Dale click en el menú y selecciona "Open File" para abrir la carpeta descomprim
 ![Ejecutar el proyecto](https://github.com/user-attachments/assets/ca556a8b-d13b-47e1-a178-d9b416216fb5)
 
 <p align="justify">
-<b>Antes de ejecutar</b>, es importante ajustar tus variables de entorno en Windows o Linux. A continuación, un breve ejemplo de cómo encontrarlas en <b>Windows</b>:
+<b>Antes de ejecutar</b>, es importante ajustar tus variables de entorno en Windows o Linux. A continuación, un breve ejemplo de cómo encontrarlas en <b>Windows</b> (En inicio escribe variables de entorno) y abrirás la siguiente ventana:
 </p>
 
 ![variables_de_entorno](https://github.com/user-attachments/assets/04e90722-40ba-4cf3-b2d5-0ad8c1304843)
