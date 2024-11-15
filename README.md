@@ -82,7 +82,7 @@ Haz click en "Variables de entorno" y modifícalas según sea necesario. ⬆️
 </p>
 
 <p align="justify">
-En el menú de la izquierda, haz click en la carpeta `resources`, ingresa a <b>application.properties</b> y verás las variables de entorno configuradas. Puedes ajustarlas para que coincidan con tu configuración:
+En el menú de la izquierda, haz click en la carpeta resources, 🧱 ingresa a <b>application.properties</b> y verás las variables de entorno configuradas. Puedes ajustarlas para que coincidan con tu configuración:
 </p>
 
 ![aplication_properties](https://github.com/user-attachments/assets/efd481e1-dcb1-4c58-ac6d-9aba3e72b795)
