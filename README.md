@@ -104,6 +104,13 @@ Visualizarás el siguiente menú en consola:
 </p>
 <hr>
 
+## Autor:
+
+| [<img src="https://avatars.githubusercontent.com/u/166320575?s=400&u=d0ae42a77ad4a0d990a57bb194d54e427bd34df3&v=4" width=115><br><sub>Brayan Díaz</sub>](https://github.com/BrayanDiaz89) |
+| :---: |
+
+<hr>
+
 ## 🥇 Créditos:
 
 <p align="justify"> 
