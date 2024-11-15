@@ -70,8 +70,11 @@ Como observas anteriormente, podrás visualizar la información más relevante d
 <b>Antes de ejecutar</b>, es importante ajustar tus variables de entorno en Windows o Linux, te dejo un breve ejemplo de en donde puedes encontrar las variables de entorno en <b>Windows</b>:
 </p>
 
+<p>
+  
 ![variables_de_entorno](https://github.com/user-attachments/assets/04e90722-40ba-4cf3-b2d5-0ad8c1304843)
 
+</p>
 
 <p align="justify">
 Dar click en donde dice variables de entorno, y modificarlas. ⬆️
