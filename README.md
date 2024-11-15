@@ -100,7 +100,7 @@ Visualizarás el siguiente menú en consola:
 ![Menu_aplicacion](https://github.com/user-attachments/assets/5832e772-e4ca-44d5-bb1b-397ad0fbb192)
 
 <p align="justify">
-✔️ ¡Listo! Ahora puedes utilizar <b>LITERALURA</b>. ¡Gracias por tu tiempo e interés! 
+✔️ ¡Listo! Ahora puedes utilizar el asombroso sistema |<b>LITERALURA</b>|. ¡Gracias por tu tiempo e interés! 
 </p>
 <hr>
 
