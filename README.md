@@ -89,7 +89,7 @@ Una vez configurado lo anterior, ya podrás darle uso correcto a la aplicación,
 
 
 <p align="justify">
-Visualizarás el siguiente Menú: 
+Visualizarás el siguiente Menú en consola: 
 </p>
 
 ![Menu_aplicacion](https://github.com/user-attachments/assets/5832e772-e4ca-44d5-bb1b-397ad0fbb192)
