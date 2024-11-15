@@ -114,4 +114,4 @@ Visualizarás el siguiente menú en consola:
 ## 🥇 Créditos:
 
 <p align="justify"> 
-Gracias a <a href="https://www.aluracursos.com/" target="_blank"><strong>Alura LATAM</strong></a> y a <a href="https://www.oracle.com/co/education/oracle-next-education/" target="_blank"><strong>Oracle Next Education</strong></a> por esta gran oportunidad
+Gracias a <a href="https://www.aluracursos.com/" target="_blank"><strong>Alura LATAM</strong></a> y a <a href="https://www.oracle.com/co/education/oracle-next-education/" target="_blank"><strong>Oracle Next Education</strong></a> por esta gran oportunidad!.
